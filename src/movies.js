@@ -1,34 +1,9 @@
-// Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
-// How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors(moviesArray) {}
-
-// Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {}
-
-// Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
-
-// Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
-
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
-
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
-
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
-
-// BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
 
 
+// const movies = require("./data.js");
 
-// The following is required to make unit tests work.
-/* Environment setup. Do not modify the below code. */
-if (typeof module !== 'undefined') {
+
+if (typeof module !== "undefined") {
   module.exports = {
     getAllDirectors,
     howManyMovies,
@@ -40,3 +15,96 @@ if (typeof module !== 'undefined') {
     bestYearAvg,
   };
 }
+
+// 1. Todos los directores
+
+function getAllDirectors() {
+  return movies.map((movie) => {
+    return movie.director;
+  });
+}
+
+console.log(getAllDirectors());
+
+// 1.1 Limpiar los directores
+
+// function unicDirectors(array){
+// const unicArray=[];
+// array.forEach(director => {
+//   if(unicArray.indexOf(director) === -1){unicArray.push(director);}
+// });
+// return unicArray
+// }
+
+// const nonDuplicateDirectors = unicDirectors(movies);
+// console.log(nonDuplicateDirectors)
+
+// * Buscar info de método set para el bonus
+
+// 2. Spielberg
+
+function howManyMovies(movies) {
+  const count = {};
+  for (let film of movies) {
+    const spielberg = film.director.toLowerCase();
+    if (spielberg === "steven spielberg") {
+      if (count[spielberg]) {
+        count[spielberg]++;
+      } else {
+        count[spielberg] = 1;
+      }
+    }
+  }
+  return count;
+}
+
+const SpielbergRepetition = howManyMovies(movies);
+console.log("Número de peliculas dirigidas por Steven Spielberg: ", SpielbergRepetition)
+
+// 3. Promedio de puntuaciones
+
+function scoresAverage(movies){
+ const sum = movies.reduce((acc, movie) => {
+return acc + movie.score;
+  }, 0)
+  const average = sum / movies.length;
+  return average
+}
+
+// Preguntar martes /sabado AVERAGE
+// function numberRound (average){
+// return Math.round(average);
+// }
+// const roundedNumber = numberRound
+
+console.log(scoresAverage(movies));
+
+// 4. Drama movies
+
+function dramaMoviesScore(movies){
+  return movies.filter((drama)=>{
+    return drama.genre.includes("Drama");
+  })
+}
+
+console.log(dramaMoviesScore(movies))
+
+console.log(scoresAverage(dramaMoviesScore(movies)))
+
+// Preguntar martes /sabado AVERAGE
+// function numberRound (average){
+// return Math.round(average);
+// }
+// const roundedNumber = numberRound
+
+// 5. Ordenar por año
+
+function orderByYear(movies){
+  return movies.map((order)=>{
+    return order.sort.year((a,b)=>{
+      return a-b;
+    })
+  })
+}
+
+console.log(orderByYear(movies))
