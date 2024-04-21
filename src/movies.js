@@ -26,7 +26,7 @@ function getAllDirectors() {
 
 console.log(getAllDirectors());
 
-// 1.1 Limpiar los directores
+// Bonus: 1.1 Limpiar los directores
 
 // function unicDirectors(array){
 // const unicArray=[];
@@ -71,7 +71,8 @@ return acc + movie.score;
   return average
 }
 
-// Preguntar martes /sabado AVERAGE
+// Preguntar martes /sabado redondear números
+
 // function numberRound (average){
 // return Math.round(average);
 // }
@@ -91,7 +92,8 @@ console.log(dramaMoviesScore(movies))
 
 console.log(scoresAverage(dramaMoviesScore(movies)))
 
-// Preguntar martes /sabado AVERAGE
+// Preguntar martes /sabado - Redondear números
+
 // function numberRound (average){
 // return Math.round(average);
 // }
@@ -99,12 +101,23 @@ console.log(scoresAverage(dramaMoviesScore(movies)))
 
 // 5. Ordenar por año
 
-function orderByYear(movies){
-  return movies.map((order)=>{
-    return order.sort.year((a,b)=>{
-      return a-b;
-    })
-  })
+function orderByYear(movies) {
+  const years = movies.map(movie => movie.year);
+  return years.sort((a, b) => a - b);
 }
-
 console.log(orderByYear(movies))
+
+// 6. Orden alfábetico - PREGUNTAR POR ORDEN ALFABETICO 
+
+function orderAlphabetically(movies){
+  const titles = movies.map(movie => movie.title);
+  return titles.sort((a,b) => a.length-b.length);
+}
+console.log(orderAlphabetically(movies))
+
+//  Next action use break to stop the array in order to just show the first 20 entries
+
+// 7. Bonus: Formato de tiempo - Cambiar horas a minutos
+
+
+
