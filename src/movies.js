@@ -107,17 +107,31 @@ function orderByYear(movies) {
 }
 console.log(orderByYear(movies))
 
-// 6. Orden alfábetico - PREGUNTAR POR ORDEN ALFABETICO 
+// 6. Orden alfábetico 
 
 function orderAlphabetically(movies){
   const titles = movies.map(movie => movie.title);
-  return titles.sort((a,b) => a.length-b.length);
+  return movies.sort((a,b) => a.title.localeCompare (b.title));
 }
 console.log(orderAlphabetically(movies))
 
-//  Next action use break to stop the array in order to just show the first 20 entries
+console.log(orderAlphabetically(movies).splice(0,20))
+
 
 // 7. Bonus: Formato de tiempo - Cambiar horas a minutos
 
+function turnHoursToMinutes(movies){
+  const hours = movies.map(parts=> parts.hour);
+  return hours.duration.split(" ");
+  const minutes = parseInt(parts.duration[0])*60 + parseInt(parts.duration[1]);
+}
+console.log(turnHoursToMinutes(movies))
+  
 
 
+
+// bonus 8. Media puntuación anual
+
+function bestYearAvg(movies){
+
+}
