@@ -1,8 +1,3 @@
-
-
-// const movies = require("./data.js");
-
-
 if (typeof module !== "undefined") {
   module.exports = {
     getAllDirectors,
@@ -28,18 +23,6 @@ console.log(getAllDirectors());
 
 // Bonus: 1.1 Limpiar los directores
 
-// function unicDirectors(array){
-// const unicArray=[];
-// array.forEach(director => {
-//   if(unicArray.indexOf(director) === -1){unicArray.push(director);}
-// });
-// return unicArray
-// }
-
-// const nonDuplicateDirectors = unicDirectors(movies);
-// console.log(nonDuplicateDirectors)
-
-// * Buscar info de método set para el bonus
 
 // 2. Spielberg
 
@@ -59,79 +42,80 @@ function howManyMovies(movies) {
 }
 
 const SpielbergRepetition = howManyMovies(movies);
-console.log("Número de peliculas dirigidas por Steven Spielberg: ", SpielbergRepetition)
+console.log(
+  "Número de peliculas dirigidas por Steven Spielberg: ",
+  SpielbergRepetition
+);
 
 // 3. Promedio de puntuaciones
 
-function scoresAverage(movies){
- const sum = movies.reduce((acc, movie) => {
-return acc + movie.score;
-  }, 0)
+function scoresAverage(movies) {
+  const sum = movies.reduce((acc, movie) => {
+    return acc + movie.score;
+  }, 0);
   const average = sum / movies.length;
-  return average
+  return Math.round(average);
 }
-
-// Preguntar martes /sabado redondear números
-
-// function numberRound (average){
-// return Math.round(average);
-// }
-// const roundedNumber = numberRound
 
 console.log(scoresAverage(movies));
 
 // 4. Drama movies
 
-function dramaMoviesScore(movies){
-  return movies.filter((drama)=>{
+function dramaMoviesScore(movies) {
+  return movies.filter((drama) => {
     return drama.genre.includes("Drama");
-  })
+  });
 }
 
-console.log(dramaMoviesScore(movies))
+console.log(dramaMoviesScore(movies));
 
-console.log(scoresAverage(dramaMoviesScore(movies)))
+console.log(scoresAverage(dramaMoviesScore(movies)));
 
-// Preguntar martes /sabado - Redondear números
-
-// function numberRound (average){
-// return Math.round(average);
-// }
-// const roundedNumber = numberRound
-
-// 5. Ordenar por año
+// 5. Order by year
 
 function orderByYear(movies) {
-  const years = movies.map(movie => movie.year);
+  const years = movies.map((movie) => movie.year);
   return years.sort((a, b) => a - b);
 }
-console.log(orderByYear(movies))
+console.log(orderByYear(movies));
 
-// 6. Orden alfábetico 
+// 6. Orden alfábetico
 
-function orderAlphabetically(movies){
-  const titles = movies.map(movie => movie.title);
-  return movies.sort((a,b) => a.title.localeCompare (b.title));
+function orderAlphabetically(movies) {
+  const titles = movies.map((movie) => movie.title);
+  return movies.sort((a, b) => a.title.localeCompare(b.title));
 }
-console.log(orderAlphabetically(movies))
+console.log(orderAlphabetically(movies));
 
-console.log(orderAlphabetically(movies).splice(0,20))
-
+console.log(orderAlphabetically(movies).splice(0, 20));
 
 // 7. Bonus: Formato de tiempo - Cambiar horas a minutos
 
-function turnHoursToMinutes(movies){
-  const hours = movies.map(parts=> parts.hour);
-  return hours.duration.split(" ");
-  const minutes = parseInt(parts.duration[0])*60 + parseInt(parts.duration[1]);
+function convertHoursToMinutes(duration) {
+  const parts = duration.split(" ");
+  if (parts.length === 2) {
+    const hours = parseFloat(parts[0]);
+    const minutes = parseFloat(parts[1]);
+    return hours * 60 + minutes;
+  } else if (parts.length === 1 && parts[0].includes('h')) {
+    const hours = parseFloat(parts[0]);
+    return hours * 60;
+  } else if (parts.length === 1 && parts[0].includes('min')) {
+    const minutes = parseFloat(parts[0]);
+    return minutes;
+  } 
 }
-console.log(turnHoursToMinutes(movies))
-  
 
+const updatedMovies = movies.map(movie => ({
+  ...movie,
+  duration: convertHoursToMinutes(movie.duration)
+}));
 
+console.log(updatedMovies)
 
 // bonus 8. Media puntuación anual
 
-function bestYearAvg(movies){
+// function bestYearAvg(movies){
 
-}
+// }
+
