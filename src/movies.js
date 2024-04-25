@@ -21,9 +21,6 @@ function getAllDirectors() {
 
 console.log(getAllDirectors());
 
-// Bonus: 1.1 Limpiar los directores
-
-
 // 2. Spielberg
 
 function howManyMovies(movies) {
@@ -112,10 +109,3 @@ const updatedMovies = movies.map(movie => ({
 }));
 
 console.log(updatedMovies)
-
-// bonus 8. Media puntuación anual
-
-// function bestYearAvg(movies){
-
-// }
-
