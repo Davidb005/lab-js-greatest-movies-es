@@ -51,7 +51,7 @@ function scoresAverage(movies) {
     return acc + movie.score;
   }, 0);
   const average = sum / movies.length;
-  return Math.round(average);
+  return Math.round(average.toFixed(2));
 }
 
 console.log(scoresAverage(movies));
@@ -82,8 +82,6 @@ function orderAlphabetically(movies) {
   const titles = movies.map((movie) => movie.title);
   return movies.sort((a, b) => a.title.localeCompare(b.title));
 }
-console.log(orderAlphabetically(movies));
-
 console.log(orderAlphabetically(movies).splice(0, 20));
 
 // 7. Bonus: Formato de tiempo - Cambiar horas a minutos
